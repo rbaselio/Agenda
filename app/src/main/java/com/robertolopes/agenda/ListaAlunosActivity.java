@@ -38,6 +38,17 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
 
         registerForContextMenu(listaAlunos);
+        listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(position);
+                Toast.makeText(ListaAlunosActivity.this, "Aluno: " + aluno.getNome() + " Editar", Toast.LENGTH_SHORT).show();
+                Intent vaiProFormulario = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+                vaiProFormulario.putExtra("aluno", aluno);
+                startActivity(vaiProFormulario);
+
+            }
+        });
 
     }
 
@@ -72,7 +83,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AlunoDAO dao = new AlunoDAO(this);
         List<Aluno> alunos = dao.buscaAluno();
         dao.close();
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
         listaAlunos.setAdapter(adapter);
     }
 }
