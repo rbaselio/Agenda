@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import com.robertolopes.agenda.modelo.Aluno;
 
@@ -36,14 +37,20 @@ public class AlunoDAO extends SQLiteOpenHelper {
     public void insere(Aluno aluno) {
         SQLiteDatabase db = getWritableDatabase();
 
+        ContentValues dados = getContentValuesAluno(aluno);
+
+        db.insert("Alunos", null, dados);
+    }
+
+    @NonNull
+    private ContentValues getContentValuesAluno(Aluno aluno) {
         ContentValues dados = new ContentValues();
         dados.put("nome", aluno.getNome());
         dados.put("endereco", aluno.getEndereco());
         dados.put("telefone", aluno.getTelefone());
         dados.put("site", aluno.getSite());
         dados.put("nota", aluno.getNota());
-
-        db.insert("Alunos", null, dados);
+        return dados;
     }
 
     public List<Aluno> buscaAluno() {
@@ -51,7 +58,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
 
-        List<Aluno> alunos = new ArrayList<Aluno>();
+        List<Aluno> alunos = new ArrayList<>();
         while (c.moveToNext()) {
             Aluno aluno = new Aluno();
             aluno.setId(c.getLong(c.getColumnIndex("id")));
@@ -72,5 +79,13 @@ public class AlunoDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String[] params = {String.valueOf(aluno.getId())};
         db.delete("Alunos", "id = ?", params);
+    }
+
+    public void altera(Aluno aluno) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] params = {String.valueOf(aluno.getId())};
+        ContentValues dados = getContentValuesAluno(aluno);
+        db.update("Alunos", dados, "id = ?", params);
+
     }
 }
