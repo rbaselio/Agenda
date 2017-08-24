@@ -1,6 +1,7 @@
 package com.robertolopes.agenda;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
@@ -37,7 +38,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
             }
         });
 
-        registerForContextMenu(listaAlunos);
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
@@ -49,7 +49,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
             }
         });
-
+        registerForContextMenu(listaAlunos);
     }
 
     @Override
@@ -61,18 +61,27 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        final Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
+
+        MenuItem itemSite = menu.add("Visitar Site");
+        Intent intentSite = new Intent(Intent.ACTION_VIEW);
+        String site = aluno.getSite();
+        if (!site.startsWith("http://")) site = "http://" + site;
+        intentSite.setData(Uri.parse(site));
+        itemSite.setIntent(intentSite);
+
+
         MenuItem remover = menu.add("Remover");
         remover.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-                Aluno aluno = (Aluno) listaAlunos.getItemAtPosition(info.position);
                 Toast.makeText(ListaAlunosActivity.this, "Aluno: " + aluno.getNome() + " Deletar", Toast.LENGTH_SHORT).show();
                 AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
                 dao.deletar(aluno);
                 dao.close();
                 carregaLista();
-                return true;
+                return false;
             }
         });
 
