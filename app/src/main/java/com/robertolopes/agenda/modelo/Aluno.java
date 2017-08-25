@@ -8,7 +8,17 @@ public class Aluno implements Serializable {
     private String endereco;
     private String telefone;
     private String site;
+    private String caminhoFoto;
     private Double nota;
+
+    public String getCaminhoFoto() {
+        return caminhoFoto;
+    }
+
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
+    }
+
 
     public Long getId() {
         return id;
