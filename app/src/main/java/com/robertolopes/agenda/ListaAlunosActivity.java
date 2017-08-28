@@ -11,11 +11,11 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.robertolopes.agenda.adapter.AlunosAdapter;
 import com.robertolopes.agenda.dao.AlunoDAO;
 import com.robertolopes.agenda.modelo.Aluno;
 
@@ -125,7 +125,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         AlunoDAO dao = new AlunoDAO(this);
         List<Aluno> alunos = dao.buscaAluno();
         dao.close();
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos);
+        AlunosAdapter adapter = new AlunosAdapter(this, alunos);
         listaAlunos.setAdapter(adapter);
     }
 
