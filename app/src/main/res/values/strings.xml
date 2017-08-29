@@ -10,4 +10,5 @@
     <string name="telefone">Telefone</string>
     <string name="endere_o">Endereço</string>
     <string name="nome">Nome</string>
+	<string name="enviar_notas">Enviar Notas</string>
 </resources>

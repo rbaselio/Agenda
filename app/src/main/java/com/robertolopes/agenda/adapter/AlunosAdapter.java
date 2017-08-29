@@ -41,7 +41,6 @@ public class AlunosAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         Aluno aluno = alunos.get(position);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = convertView;
@@ -50,11 +49,10 @@ public class AlunosAdapter extends BaseAdapter {
         }
         TextView campoNome = (TextView) view.findViewById(R.id.item_nome);
         campoNome.setText(aluno.getNome());
-
         TextView campoTelefone = (TextView) view.findViewById(R.id.item_telefone);
         campoTelefone.setText(aluno.getTelefone());
-
         String caminhoFoto = aluno.getCaminhoFoto();
+
         if (caminhoFoto != null) {
             ImageView campoFoto = (ImageView) view.findViewById(R.id.item_foto);
             Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
@@ -63,5 +61,4 @@ public class AlunosAdapter extends BaseAdapter {
         }
         return view;
     }
-
 }
