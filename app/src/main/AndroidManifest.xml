@@ -45,8 +45,6 @@
 
 		<activity android:name=".ProvasActivity">
 		</activity>
-		<activity android:name=".DetalhesProvasActivity">
-		</activity>
 		<activity android:name=".ProvasTabletActivity">
 		</activity>
 	</application>

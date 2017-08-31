@@ -1,4 +1,4 @@
-package com.robertolopes.agenda;
+package com.robertolopes.agenda.tasks;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,11 +8,12 @@ import android.widget.Toast;
 import com.robertolopes.agenda.converter.AlunoConverter;
 import com.robertolopes.agenda.dao.AlunoDAO;
 import com.robertolopes.agenda.modelo.Aluno;
+import com.robertolopes.agenda.web.WebClient;
 
 import java.util.List;
 
 public class EnviaAlunosTask extends AsyncTask<Void, Void, String> {
-    ProgressDialog dialog;
+    private ProgressDialog dialog;
     private Context context;
 
     public EnviaAlunosTask(Context context) {

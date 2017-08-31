@@ -1,4 +1,4 @@
-package com.robertolopes.agenda;
+package com.robertolopes.agenda.web;
 
 import java.io.IOException;
 import java.io.PrintStream;

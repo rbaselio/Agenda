@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,7 +22,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_margin="16dp"
-				android:text="Materia"
+				android:text="@string/materia"
 				android:textColor="#fff"
 				android:textSize="22sp"
 				android:textStyle="bold"/>
@@ -34,7 +33,7 @@
 				android:layout_height="wrap_content"
 				android:layout_alignParentRight="true"
 				android:layout_margin="16dp"
-				android:text="Data"
+				android:text="@string/data"
 				android:textColor="#fff"
 				android:textSize="22sp"
 				android:textStyle="bold"/>
@@ -43,7 +42,7 @@
 		<android.support.v7.widget.ListViewCompat
 			android:id="@+id/detalhes_prova_topicos"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"></android.support.v7.widget.ListViewCompat>
+			android:layout_height="match_parent"/>
 
 	</android.support.v7.widget.LinearLayoutCompat>
 
