@@ -21,6 +21,8 @@ public class ProvasActivity extends AppCompatActivity {
         if (getResources().getBoolean(R.bool.modoPaisagem))
             tx.replace(R.id.frame_secundario, new DetalhesProvaFragment());
 
+        tx.addToBackStack(null);
+
         tx.commit();
     }
 
